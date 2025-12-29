@@ -38,7 +38,10 @@ impl EnginePlayerState {
         self.decision_maker.bid(current_bid, self.hand)
     }
     pub fn chose_trump(&mut self, kitty: [Card; 5]) -> CardSuit {
-        self.decision_maker.chose_trump(self.hand, kitty)
+        let mut expanded_hand = self.hand.to_vec();
+        expanded_hand.extend_from_slice(&kitty);
+        self.decision_maker.chose_hand(expanded_hand.try_into().unwrap());
+        self.decision_maker.chose_trump(self.hand)
     }
     pub fn play_turn(&mut self, trump: CardSuit, pot: [Card; 4]) -> usize {
         let selected_card = self.decision_maker.play_turn(trump, pot, self.hand);
