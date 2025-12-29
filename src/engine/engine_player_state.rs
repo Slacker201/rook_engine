@@ -54,11 +54,6 @@ impl EnginePlayerState {
         self.won_cards.extend_from_slice(&pot);
     }
     pub fn has_no_cards(&self) -> bool {
-        for card in self.hand {
-            if card != Card::Null {
-                return false
-            }
-        }
-        true
+        self.hand.iter().all(|card| card == &Card::Null)
     }
 }
