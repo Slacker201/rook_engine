@@ -1,4 +1,4 @@
-use crate::engine::{RookEngine, card::{Card, CardSuit}, engine_player_state::EnginePlayerState, engine_state::Turn};
+use crate::engine::{RookEngine, card::{Card, CardSuit}, engine_player_state::EnginePlayerState, engine_state::{EngineState, Turn}};
 
 
 
@@ -13,10 +13,16 @@ impl RookEngine {
             pot[idx] = card;
             idx += 1;
         }
-
-        let mut winner = players.into_iter().nth(Self::get_index_of_winner(trump, pot)).unwrap();
+        let winner_index = Self::get_index_of_winner(trump, pot);
+        let winner = players.into_iter().nth(winner_index).unwrap();
 
         winner.add_won_cards(pot);
+
+        if winner.has_no_cards() {
+            self.state = EngineState::Won
+        } else {
+            self.state = EngineState::Ingame(trump, Turn::from(winner_index))
+        }
     }
 
     fn get_players_arranged_to_turn(&mut self, turn: Turn) -> [&mut EnginePlayerState; 4] {
