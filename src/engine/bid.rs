@@ -33,6 +33,7 @@ impl RookEngine {
         let (new_hand, nest) = bid_winner.chose_hand(kitty);
         bid_winner.set_hand(new_hand);
         self.nest = nest;
+        self.bid = current_bid;
         (bid_winner.chose_trump(), *turn)
     }
 }
