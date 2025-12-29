@@ -1,8 +1,10 @@
-use rand::{rng, seq::SliceRandom};
+use crate::{dummy_decision_engine::DummyEngine, engine::RookEngine};
 
-use crate::engine::{RookEngine, card::Card, dummy_decision_engine::DummyEngine};
+
+
 
 pub mod engine;
+pub mod dummy_decision_engine;
 
 fn main() {
     let mut engine = RookEngine::new([
@@ -12,5 +14,7 @@ fn main() {
         Box::new(DummyEngine::new()),
         ]);
     engine.advance_game();
-    println!("{:?}", engine)
+    println!("{:?}", engine);
+    engine.advance_game();
+    println!("{:?}", engine);
 }
