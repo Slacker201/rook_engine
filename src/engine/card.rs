@@ -100,4 +100,19 @@ impl CardNumber {
             Self::One => 15,
         }
     }
+    pub fn to_i32(&self) -> i32 {
+        match self {
+            CardNumber::Five => 5,
+            CardNumber::Six => 6,
+            CardNumber::Seven => 7,
+            CardNumber::Eight => 8,
+            CardNumber::Nine => 9,
+            CardNumber::Ten => 10,
+            CardNumber::Eleven => 11,
+            CardNumber::Twelve => 12,
+            CardNumber::Thirteen => 13,
+            CardNumber::Fourteen => 14,
+            CardNumber::One => 15,
+        }
+    } 
 }
