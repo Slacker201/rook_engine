@@ -41,7 +41,9 @@ impl EnginePlayerState {
         self.decision_maker.chose_trump(self.hand, kitty)
     }
     pub fn play_turn(&mut self, trump: CardSuit, pot: [Card; 4]) -> usize {
-        self.decision_maker.play_turn(trump, pot, self.hand)
+        let selected_card = self.decision_maker.play_turn(trump, pot, self.hand);
+        // TODO add turn verification
+        selected_card
     }
     pub fn get_and_remove(&mut self, card_idx: usize) -> Card {
         let card = self.hand[card_idx];
@@ -50,5 +52,13 @@ impl EnginePlayerState {
     }
     pub fn add_won_cards(&mut self, pot: [Card; 4]) {
         self.won_cards.extend_from_slice(&pot);
+    }
+    pub fn has_no_cards(&self) -> bool {
+        for card in self.hand {
+            if card != Card::Null {
+                return true
+            }
+        }
+        false
     }
 }
