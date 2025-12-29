@@ -14,6 +14,7 @@ pub mod dummy_decision_engine;
 // game stages
 mod pregame;
 mod bid;
+mod ingame;
 
 #[derive(Debug)]
 pub struct RookEngine {
