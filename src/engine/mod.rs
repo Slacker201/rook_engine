@@ -57,15 +57,15 @@ impl RookEngine {
 
     fn resume_and_complete_game(&mut self) {
         while self.state != EngineState::Won {
-            self.play_trick();
+            self.advance_game();
         }
     }
 
-    pub fn play_trick(&mut self) {
+    pub fn advance_game(&mut self) {
         match self.state {
             EngineState::Pregame => {
                 self.init_pregame();
-                self.play_trick();
+                self.advance_game();
             }
             EngineState::Bid(kitty) => {
                 let (trump, winner) = self.bid(kitty);
@@ -74,6 +74,7 @@ impl RookEngine {
             }
             EngineState::Ingame(trump_suit, turn) => {
                 // Play tricks
+                self.play_trick()
             }
             EngineState::Won => {
                 // someone won
