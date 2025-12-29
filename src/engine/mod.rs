@@ -22,6 +22,7 @@ pub struct RookEngine {
     rng: ThreadRng,
     players: [EnginePlayerState; 4],
     nest: [Card; 5],
+    bid: u32,
 }
 
 pub trait RookPlayer: Debug {
@@ -52,6 +53,7 @@ impl RookEngine {
             rng,
             players,
             nest: empty_nest,
+            bid: 0,
         }
     }
 
@@ -84,6 +86,7 @@ impl RookEngine {
             }
             EngineState::Won => {
                 // someone won
+                // iterate through each players won cards and see who wins
             }
         }
     }
