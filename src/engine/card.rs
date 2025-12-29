@@ -88,6 +88,17 @@ impl Card {
     pub fn is_trump(&self, trump: CardSuit) -> bool {
         self.suit(trump) == trump
     }
+
+    pub fn to_i32(&self) -> i32 {
+        match self {
+            Card::Null => panic!("goofy ahh computer"),
+            Card::Red(card_number) => card_number.to_i32(),
+            Card::Green(card_number) => card_number.to_i32(),
+            Card::Yellow(card_number) => card_number.to_i32(),
+            Card::Black(card_number) => card_number.to_i32(),
+            Card::Rook => 1,
+        }
+    }
 }
 
 
