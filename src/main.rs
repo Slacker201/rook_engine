@@ -11,6 +11,6 @@ fn main() {
         Box::new(DummyEngine::new()),
         Box::new(DummyEngine::new()),
         ]);
-    engine.play_trick();
+    engine.advance_game();
     println!("{:?}", engine)
 }
