@@ -41,7 +41,15 @@ impl EnginePlayerState {
         self.decision_maker.chose_trump(self.hand)
     }
     pub fn play_turn(&mut self, trump: CardSuit, pot: [Card; 4]) -> usize {
-        let selected_card = self.decision_maker.play_turn(trump, pot, self.hand);
+        let mut selected_card = self.decision_maker.play_turn(trump, pot, self.hand);
+        let mut idx = 0;
+        while self.hand[selected_card] == Card::Null {
+            selected_card = idx;
+            idx += 1;
+            if idx == 10 {
+                panic!("goofy ahh computer")
+            }
+        }
         // TODO add turn verification
         selected_card
     }
