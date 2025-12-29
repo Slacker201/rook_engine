@@ -29,7 +29,7 @@ pub trait RookPlayer: Debug {
     fn play_turn(&mut self, trunp: CardSuit, pot: [Card; 4], hand: [Card; 10]) -> usize;
     fn should_reshuffle(&mut self, hand: [Card; 10]) -> bool;
     fn chose_trump(&mut self, hand: [Card; 10]) -> CardSuit;
-    fn chose_hand(&mut self, hand: [Card; 15]) -> [Card; 10];
+    fn chose_hand(&mut self, hand: [Card; 15]) -> ([Card; 10], [Card; 5]);
 }
 
 impl RookEngine {

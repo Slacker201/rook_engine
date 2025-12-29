@@ -26,8 +26,8 @@ impl RookPlayer for DummyEngine {
         CardSuit::Black
     }
     
-    fn chose_hand(&mut self, hand: [super::card::Card; 15]) -> [super::card::Card; 10] {
-        hand[0..10].try_into().unwrap()
+    fn chose_hand(&mut self, hand: [super::card::Card; 15]) -> ([super::card::Card; 10], [super::card::Card; 5]) {
+        (hand[0..10].try_into().unwrap(), hand[10..15].try_into().unwrap())
     }
 
 }
