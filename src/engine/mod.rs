@@ -1,6 +1,6 @@
 use std::fmt::Debug;
 
-use rand::{Rng, rngs::ThreadRng, seq::SliceRandom};
+use rand::rngs::ThreadRng;
 
 use crate::engine::{
     card::{Card, CardSuit}, engine_player_state::EnginePlayerState, engine_state::{EngineState, Turn},
@@ -27,7 +27,7 @@ pub struct RookEngine {
 
 pub trait RookPlayer: Debug {
     fn bid(&mut self, current_bid: u32, hand: [Card; 10]) -> Option<u32>;
-    fn play_turn(&mut self, trunp: CardSuit, pot: [Card; 4], hand: [Card; 10]) -> usize;
+    fn play_turn(&mut self, trump: CardSuit, pot: [Card; 4], hand: [Card; 10]) -> usize;
     fn should_reshuffle(&mut self, hand: [Card; 10]) -> bool;
     fn chose_trump(&mut self, hand: [Card; 10]) -> CardSuit;
     fn chose_hand(&mut self, hand: [Card; 15]) -> ([Card; 10], [Card; 5]);
@@ -64,7 +64,7 @@ impl RookEngine {
         self.resume_and_complete_game();
     }
 
-    fn resume_and_complete_game(&mut self) {
+    pub fn resume_and_complete_game(&mut self) {
         while self.state != EngineState::Won {
             self.advance_game();
         }
