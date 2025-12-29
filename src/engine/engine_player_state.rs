@@ -56,9 +56,9 @@ impl EnginePlayerState {
     pub fn has_no_cards(&self) -> bool {
         for card in self.hand {
             if card != Card::Null {
-                return true
+                return false
             }
         }
-        false
+        true
     }
 }
