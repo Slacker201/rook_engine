@@ -37,10 +37,7 @@ impl EnginePlayerState {
     pub fn bid(&mut self, current_bid: u32) -> Option<u32> {
         self.decision_maker.bid(current_bid, self.hand)
     }
-    pub fn chose_trump(&mut self, kitty: [Card; 5]) -> CardSuit {
-        let mut expanded_hand = self.hand.to_vec();
-        expanded_hand.extend_from_slice(&kitty);
-        self.decision_maker.chose_hand(expanded_hand.try_into().unwrap());
+    pub fn chose_trump(&mut self) -> CardSuit {
         self.decision_maker.chose_trump(self.hand)
     }
     pub fn play_turn(&mut self, trump: CardSuit, pot: [Card; 4]) -> usize {
@@ -58,5 +55,10 @@ impl EnginePlayerState {
     }
     pub fn has_no_cards(&self) -> bool {
         self.hand.iter().all(|card| card == &Card::Null)
+    }
+    pub fn chose_hand(&mut self, kitty: [Card; 5]) -> ([Card; 10], [Card; 5]) {
+        let mut expanded_hand = self.hand.to_vec();
+        expanded_hand.extend_from_slice(&kitty);
+        self.decision_maker.chose_hand(expanded_hand.try_into().unwrap())
     }
 }
