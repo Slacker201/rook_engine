@@ -48,4 +48,7 @@ impl EnginePlayerState {
         self.hand[card_idx] = Card::Null;
         card
     }
+    pub fn add_won_cards(&mut self, pot: [Card; 4]) {
+        self.won_cards.extend_from_slice(&pot);
+    }
 }
