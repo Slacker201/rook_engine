@@ -56,7 +56,7 @@ impl RookEngine {
         }
     }
 
-    fn start_game(&mut self) {
+    pub fn play_game(&mut self) {
         self.state = EngineState::Pregame;
 
         self.resume_and_complete_game();
