@@ -84,6 +84,10 @@ impl Card {
             Card::Rook => trump,
         }
     }
+
+    pub fn is_trump(&self, trump: CardSuit) -> bool {
+        self.suit(trump) == trump
+    }
 }
 
 
