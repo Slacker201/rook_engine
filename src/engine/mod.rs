@@ -3,7 +3,7 @@ use std::fmt::Debug;
 use rand::{Rng, rngs::ThreadRng, seq::SliceRandom};
 
 use crate::engine::{
-    card::{Card, CardSuit}, engine_player_state::EnginePlayerState, engine_state::EngineState,
+    card::{Card, CardSuit}, engine_player_state::EnginePlayerState, engine_state::{EngineState, Turn},
 };
 
 pub mod card;
@@ -22,6 +22,7 @@ pub struct RookEngine {
     players: [EnginePlayerState; 4],
     nest: [Card; 5],
     bid: u32,
+    bid_winner: Turn,
 }
 
 pub trait RookPlayer: Debug {
@@ -53,6 +54,7 @@ impl RookEngine {
             players,
             nest: empty_nest,
             bid: 0,
+            bid_winner: Turn::One
         }
     }
 
@@ -76,6 +78,7 @@ impl RookEngine {
             }
             EngineState::Bid(kitty) => {
                 let (trump, winner) = self.bid(kitty);
+                self.bid_winner = winner;
                 println!("DID A BID");
                 self.state = EngineState::Ingame(trump, winner);
             }
