@@ -37,3 +37,16 @@ impl Turn {
         }
     }
 }
+
+
+impl From<usize> for Turn {
+    fn from(value: usize) -> Self {
+        match value {
+            0 => Self::One,
+            1 => Self::Two,
+            2 => Self::Three,
+            3 => Self::Four,
+            _ => panic!("please use 0-3 as input")
+        }
+    }
+}
