@@ -16,7 +16,7 @@ impl RookPlayer for DummyEngine {
     }
 
     fn play_turn(&mut self, trump: CardSuit, pot: [super::card::Card; 4], hand: [super::card::Card; 10]) -> usize {
-        todo!()
+        0
     }
 
     fn should_reshuffle(&mut self, hand: [super::card::Card; 10]) -> bool {
