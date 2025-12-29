@@ -73,6 +73,17 @@ impl Card {
         };
         inner.points()
     }
+
+    pub fn suit(&self, trump: CardSuit) -> CardSuit {
+        match self {
+            Card::Null => panic!("Tried to get suit of Null card"),
+            Card::Red(_) => CardSuit::Red,
+            Card::Green(_) => CardSuit::Green,
+            Card::Yellow(_) => CardSuit::Yellow,
+            Card::Black(_) => CardSuit::Black,
+            Card::Rook => trump,
+        }
+    }
 }
 
 
