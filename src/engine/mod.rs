@@ -75,7 +75,7 @@ impl RookEngine {
             }
             EngineState::Ingame(trump_suit, turn) => {
                 // Play tricks
-                self.play_trick()
+                self.play_trick(trump_suit, turn);
             }
             EngineState::Won => {
                 // someone won
