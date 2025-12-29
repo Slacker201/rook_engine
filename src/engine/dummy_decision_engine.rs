@@ -22,9 +22,14 @@ impl RookPlayer for DummyEngine {
     fn should_reshuffle(&mut self, hand: [super::card::Card; 10]) -> bool {
         false
     }
-    fn chose_trump(&mut self, hand: [super::card::Card; 10], kitty: [super::card::Card;5]) -> CardSuit {
+    fn chose_trump(&mut self, hand: [super::card::Card; 10]) -> CardSuit {
         CardSuit::Black
     }
+    
+    fn chose_hand(&mut self, hand: [super::card::Card; 15]) -> [super::card::Card; 10] {
+        hand[0..10].try_into().unwrap()
+    }
+
 }
 
 impl DummyEngine {
