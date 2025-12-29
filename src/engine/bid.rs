@@ -29,6 +29,10 @@ impl RookEngine {
                 idx = 0
             }
         }
-        (bidders[0].0.chose_trump(kitty), bidders[0].1)
+        let (bid_winner, turn) = bidders.iter_mut().nth(0).unwrap();
+        let (new_hand, nest) = bid_winner.chose_hand(kitty);
+        bid_winner.set_hand(new_hand);
+        self.nest = nest;
+        (bid_winner.chose_trump(), *turn)
     }
 }
