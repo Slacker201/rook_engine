@@ -85,7 +85,7 @@ impl Card {
         }
     }
 
-    pub fn is_trump(&self, trump: CardSuit) -> bool {
+    pub fn matches_suit(&self, trump: CardSuit) -> bool {
         self.suit(trump) == trump
     }
 
