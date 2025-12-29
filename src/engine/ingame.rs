@@ -4,18 +4,19 @@ use crate::engine::{RookEngine, card::{Card, CardSuit}, engine_player_state::Eng
 
 impl RookEngine {
     pub fn play_trick(&mut self, trump: CardSuit, turn: Turn) {
-        let players = self.get_players_arranged_to_turn(turn);
+        let mut players = self.get_players_arranged_to_turn(turn);
         let mut pot = [Card::Null; 4];
         let mut idx = 0;
-        for player in players {
+        for player in players.iter_mut() {
             let card_played = player.play_turn(trump, pot);
             let card = player.get_and_remove(card_played);
             pot[idx] = card;
             idx += 1;
         }
 
-        let winner = players[Self::get_index_of_winner(pot)];
+        let mut winner = players.into_iter().nth(Self::get_index_of_winner(trump, pot)).unwrap();
 
+        winner.add_won_cards(pot);
     }
 
     fn get_players_arranged_to_turn(&mut self, turn: Turn) -> [&mut EnginePlayerState; 4] {
