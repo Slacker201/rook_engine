@@ -21,6 +21,7 @@ pub struct RookEngine {
     state: EngineState,
     rng: ThreadRng,
     players: [EnginePlayerState; 4],
+    nest: [Card; 5],
 }
 
 pub trait RookPlayer: Debug {
@@ -40,6 +41,8 @@ impl RookEngine {
             EnginePlayerState::new(EMPTY_HAND, p3),
             EnginePlayerState::new(EMPTY_HAND, p4),
         ];
+
+        let empty_nest = [Card::Null; 5];
         let rng = rand::rng();
         let state = EngineState::Pregame;
 
@@ -47,6 +50,7 @@ impl RookEngine {
             state,
             rng,
             players,
+            nest: empty_nest,
         }
     }
 
