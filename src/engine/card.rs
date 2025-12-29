@@ -45,7 +45,7 @@ impl Card {
             CardNumber::Thirteen,
             CardNumber::Fourteen,
             CardNumber::One,
-            ];
+        ];
         let mut cards = Vec::new();
         for i in 0..4 {
             for item in NUMBERS {
@@ -101,11 +101,16 @@ impl Card {
     }
 }
 
-
 impl CardNumber {
     pub fn points(&self) -> usize {
         match self {
-            Self::Six | Self::Seven | Self::Eight |  Self::Nine | Self::Eleven | Self::Twelve | Self::Thirteen => 0,
+            Self::Six
+            | Self::Seven
+            | Self::Eight
+            | Self::Nine
+            | Self::Eleven
+            | Self::Twelve
+            | Self::Thirteen => 0,
             Self::Five => 5,
             Self::Ten | Self::Fourteen => 10,
             Self::One => 15,
@@ -125,5 +130,5 @@ impl CardNumber {
             CardNumber::Fourteen => 14,
             CardNumber::One => 15,
         }
-    } 
+    }
 }

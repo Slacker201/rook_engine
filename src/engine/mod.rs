@@ -3,7 +3,9 @@ use std::fmt::Debug;
 use rand::rngs::ThreadRng;
 
 use crate::engine::{
-    card::{Card, CardSuit}, engine_player_state::EnginePlayerState, engine_state::{EngineState, Turn},
+    card::{Card, CardSuit},
+    engine_player_state::EnginePlayerState,
+    engine_state::{EngineState, Turn},
 };
 
 pub mod card;
@@ -11,9 +13,9 @@ mod engine_player_state;
 mod engine_state;
 
 // game stages
-mod pregame;
 mod bid;
 mod ingame;
+mod pregame;
 
 #[derive(Debug)]
 pub struct RookEngine {
@@ -54,7 +56,7 @@ impl RookEngine {
             players,
             nest: empty_nest,
             bid: 0,
-            bid_winner: Turn::One
+            bid_winner: Turn::One,
         }
     }
 
@@ -92,6 +94,4 @@ impl RookEngine {
             }
         }
     }
-
 }
-

@@ -1,6 +1,9 @@
-use crate::engine::{RookEngine, card::{Card, CardSuit}, engine_player_state::EnginePlayerState, engine_state::{EngineState, Turn}};
-
-
+use crate::engine::{
+    RookEngine,
+    card::{Card, CardSuit},
+    engine_player_state::EnginePlayerState,
+    engine_state::{EngineState, Turn},
+};
 
 impl RookEngine {
     pub fn play_trick(&mut self, trump: CardSuit, turn: Turn) {
@@ -60,7 +63,7 @@ impl RookEngine {
             }
             idx += 1;
         }
-        
+
         highest_idx
     }
 

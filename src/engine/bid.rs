@@ -1,12 +1,16 @@
-use crate::engine::{RookEngine, card::{Card, CardSuit}, engine_player_state::EnginePlayerState, engine_state::Turn};
-
-
+use crate::engine::{
+    RookEngine,
+    card::{Card, CardSuit},
+    engine_player_state::EnginePlayerState,
+    engine_state::Turn,
+};
 
 impl RookEngine {
     pub fn bid(&mut self, kitty: [Card; 5]) -> (CardSuit, Turn) {
         let players: Vec<&mut EnginePlayerState> = self.players.iter_mut().collect();
         let turns = Turn::new_turns();
-        let mut bidders: Vec<(&mut EnginePlayerState, Turn)> = players.into_iter().zip(turns).collect();
+        let mut bidders: Vec<(&mut EnginePlayerState, Turn)> =
+            players.into_iter().zip(turns).collect();
         let mut idx = 0;
 
         let mut current_bid = 0;
@@ -20,7 +24,7 @@ impl RookEngine {
                     } else {
                         bidders.remove(idx);
                     }
-                },
+                }
                 None => {
                     bidders.remove(idx);
                 }

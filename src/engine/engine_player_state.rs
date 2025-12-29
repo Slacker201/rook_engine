@@ -1,4 +1,7 @@
-use crate::engine::{RookPlayer, card::{Card, CardSuit}};
+use crate::engine::{
+    RookPlayer,
+    card::{Card, CardSuit},
+};
 
 #[derive(Debug)]
 pub struct EnginePlayerState {
@@ -67,7 +70,8 @@ impl EnginePlayerState {
     pub fn chose_hand(&mut self, kitty: [Card; 5]) -> ([Card; 10], [Card; 5]) {
         let mut expanded_hand = self.hand.to_vec();
         expanded_hand.extend_from_slice(&kitty);
-        self.decision_maker.chose_hand(expanded_hand.try_into().unwrap())
+        self.decision_maker
+            .chose_hand(expanded_hand.try_into().unwrap())
     }
     pub fn add_nest(&mut self, nest: [Card; 5]) {
         self.won_cards.extend_from_slice(&nest);

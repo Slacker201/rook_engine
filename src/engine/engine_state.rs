@@ -9,8 +9,6 @@ pub enum EngineState {
     Won,
 }
 
-
-
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum Turn {
     One,
@@ -21,12 +19,7 @@ pub enum Turn {
 
 impl Turn {
     pub fn new_turns() -> [Turn; 4] {
-        [
-            Turn::One,
-            Turn::Two,
-            Turn::Three,
-            Turn::Four,
-        ]
+        [Turn::One, Turn::Two, Turn::Three, Turn::Four]
     }
     pub fn to_idx(&self) -> usize {
         match self {
@@ -38,7 +31,6 @@ impl Turn {
     }
 }
 
-
 impl From<usize> for Turn {
     fn from(value: usize) -> Self {
         match value {
@@ -46,7 +38,7 @@ impl From<usize> for Turn {
             1 => Self::Two,
             2 => Self::Three,
             3 => Self::Four,
-            _ => panic!("please use 0-3 as input")
+            _ => panic!("please use 0-3 as input"),
         }
     }
 }

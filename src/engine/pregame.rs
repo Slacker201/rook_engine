@@ -2,9 +2,6 @@ use rand::seq::SliceRandom;
 
 use crate::engine::{RookEngine, card::Card, engine_state::EngineState};
 
-
-
-
 impl RookEngine {
     pub fn init_pregame(&mut self) {
         let mut players_have_sufficient_points = false;
