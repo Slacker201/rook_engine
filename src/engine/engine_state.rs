@@ -28,4 +28,12 @@ impl Turn {
             Turn::Four,
         ]
     }
+    pub fn to_idx(&self) -> usize {
+        match self {
+            Turn::One => 0,
+            Turn::Two => 1,
+            Turn::Three => 2,
+            Turn::Four => 3,
+        }
+    }
 }
