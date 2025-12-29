@@ -46,7 +46,7 @@ impl EnginePlayerState {
         while self.hand[selected_card] == Card::Null {
             selected_card = idx;
             idx += 1;
-            if idx == 10 {
+            if idx == 11 {
                 panic!("goofy ahh computer")
             }
         }
