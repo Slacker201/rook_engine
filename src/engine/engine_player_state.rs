@@ -69,4 +69,7 @@ impl EnginePlayerState {
         expanded_hand.extend_from_slice(&kitty);
         self.decision_maker.chose_hand(expanded_hand.try_into().unwrap())
     }
+    pub fn add_nest(&mut self, nest: [Card; 5]) {
+        self.won_cards.extend_from_slice(&nest);
+    }
 }

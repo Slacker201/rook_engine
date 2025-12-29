@@ -4,6 +4,7 @@ use crate::engine::{RookEngine, card::{Card, CardSuit}, engine_player_state::Eng
 
 impl RookEngine {
     pub fn play_trick(&mut self, trump: CardSuit, turn: Turn) {
+        let nest = self.get_nest_cards();
         let mut players = self.get_players_arranged_to_turn(turn);
         let mut pot = [Card::Null; 4];
         let mut idx = 0;
@@ -19,9 +20,10 @@ impl RookEngine {
         winner.add_won_cards(pot);
 
         if winner.has_no_cards() {
-            self.state = EngineState::Won
+            winner.add_nest(nest);
+            self.state = EngineState::Won;
         } else {
-            self.state = EngineState::Ingame(trump, Turn::from(winner_index))
+            self.state = EngineState::Ingame(trump, Turn::from(winner_index));
         }
     }
 
@@ -60,5 +62,11 @@ impl RookEngine {
         }
         
         highest_idx
+    }
+
+    fn get_nest_cards(&mut self) -> [Card; 5] {
+        let cards = self.nest.clone();
+        self.nest = [Card::Null; 5];
+        cards
     }
 }
