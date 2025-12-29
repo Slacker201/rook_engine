@@ -26,6 +26,32 @@ impl RookEngine {
     }
 
     fn get_index_of_winner(trump: CardSuit, pot: [Card; 4]) -> usize {
-        let first_card_suit = pot[0].suit();
+        let first_card_suit = pot[0].suit(trump);
+        let mut highest_first_suit = 0;
+        let mut highest_trump = 0;
+        let mut idx = 0;
+        let mut trump_used = false;
+        let mut highest_idx = 0;
+        for card in pot {
+            if card.matches_suit(trump) {
+                trump_used = true;
+                let card_value = card.to_i32();
+                if card_value > highest_trump {
+                    highest_trump = card_value;
+                    highest_idx = idx;
+                }
+            } else {
+                if card.matches_suit(first_card_suit) {
+                    let card_value = card.to_i32();
+                    if card_value > highest_first_suit && !trump_used {
+                        highest_first_suit = card_value;
+                        highest_idx = idx;
+                    }
+                }
+            }
+            idx += 1;
+        }
+        
+        highest_idx
     }
 }
