@@ -25,7 +25,7 @@ pub struct RookEngine {
 
 pub trait RookPlayer: Debug {
     fn bid(&mut self, current_bid: u32, hand: [Card; 10]) -> Option<u32>;
-    fn play_turn(&mut self, pot: [Card; 4], hand: [Card; 10]) -> usize;
+    fn play_turn(&mut self, trunp: CardSuit, pot: [Card; 4], hand: [Card; 10]) -> usize;
     fn should_reshuffle(&mut self, hand: [Card; 10]) -> bool;
     fn chose_trump(&mut self, hand: [Card; 10], kitty: [Card;5]) -> CardSuit;
 }

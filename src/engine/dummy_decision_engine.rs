@@ -15,7 +15,7 @@ impl RookPlayer for DummyEngine {
         }
     }
 
-    fn play_turn(&mut self, pot: [super::card::Card; 4], hand: [super::card::Card; 10]) -> usize {
+    fn play_turn(&mut self, trump: CardSuit, pot: [super::card::Card; 4], hand: [super::card::Card; 10]) -> usize {
         todo!()
     }
 

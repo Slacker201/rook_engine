@@ -40,8 +40,8 @@ impl EnginePlayerState {
     pub fn chose_trump(&mut self, kitty: [Card; 5]) -> CardSuit {
         self.decision_maker.chose_trump(self.hand, kitty)
     }
-    pub fn play_turn(&mut self, pot: [Card; 4]) -> usize {
-        self.decision_maker.play_turn(pot, self.hand)
+    pub fn play_turn(&mut self, trump: CardSuit, pot: [Card; 4]) -> usize {
+        self.decision_maker.play_turn(trump, pot, self.hand)
     }
     pub fn get_and_remove(&mut self, card_idx: usize) -> Card {
         let card = self.hand[card_idx];
