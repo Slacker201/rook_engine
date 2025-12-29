@@ -13,8 +13,6 @@ fn main() {
         Box::new(DummyEngine::new()),
         Box::new(DummyEngine::new()),
         ]);
-    engine.advance_game();
-    println!("{:?}", engine);
-    engine.advance_game();
+    engine.play_game();
     println!("{:?}", engine);
 }
