@@ -4,6 +4,16 @@ use crate::engine::{RookEngine, card::{Card, CardSuit}, engine_player_state::Eng
 
 impl RookEngine {
     pub fn play_trick(&mut self, trump: CardSuit, turn: Turn) {
+        let players = self.get_players_arranged_to_turn(turn);
+        let mut pot = [Card::Null; 4];
+        let mut idx = 0;
+        for player in players {
+            let card_played = player.play_turn(pot);
+            let card = player.get_and_remove(card_played);
+            pot[idx] = card;
+            idx += 1;
+        }
+
 
     }
 
