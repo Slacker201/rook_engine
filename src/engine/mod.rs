@@ -7,8 +7,10 @@ use crate::engine::{
     engine_player_state::EnginePlayerState,
     engine_state::{EngineState, Turn},
 };
-
+// public api
 pub mod card;
+
+// internal state
 mod engine_player_state;
 mod engine_state;
 
@@ -17,6 +19,7 @@ mod bid;
 mod ingame;
 mod pregame;
 mod game_won;
+
 
 #[derive(Debug)]
 pub struct RookEngine {
