@@ -76,4 +76,7 @@ impl EnginePlayerState {
     pub fn add_nest(&mut self, nest: [Card; 5]) {
         self.won_cards.extend_from_slice(&nest);
     }
+    pub fn score(&self) -> u32 {
+        self.won_cards.iter().map(|card| card.points()).sum()
+    }
 }
