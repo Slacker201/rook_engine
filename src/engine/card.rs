@@ -62,7 +62,7 @@ impl Card {
         cards.try_into().unwrap()
     }
 
-    pub fn points(&self) -> usize {
+    pub fn points(&self) -> u32 {
         let inner = match self {
             Card::Null => return 0,
             Card::Red(card_number) => *card_number,
@@ -102,7 +102,7 @@ impl Card {
 }
 
 impl CardNumber {
-    pub fn points(&self) -> usize {
+    pub fn points(&self) -> u32 {
         match self {
             Self::Six
             | Self::Seven
