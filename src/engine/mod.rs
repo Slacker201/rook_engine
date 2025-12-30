@@ -16,6 +16,7 @@ mod engine_state;
 mod bid;
 mod ingame;
 mod pregame;
+mod game_won;
 
 #[derive(Debug)]
 pub struct RookEngine {
@@ -91,6 +92,7 @@ impl RookEngine {
             EngineState::Won => {
                 // someone won
                 // iterate through each players won cards and see who wins
+                self.game_won();
             }
         }
     }
