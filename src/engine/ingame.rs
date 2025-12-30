@@ -2,7 +2,8 @@ use crate::engine::{
     RookEngine,
     card::{Card, CardSuit},
     engine_player_state::EnginePlayerState,
-    engine_state::{EngineState, Turn}, info_structs::PostTrickInformation,
+    engine_state::{EngineState, Turn},
+    info_structs::PostTrickInformation,
 };
 
 impl RookEngine {

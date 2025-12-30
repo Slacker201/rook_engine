@@ -2,7 +2,8 @@ use crate::engine::{
     RookEngine,
     card::{Card, CardSuit},
     engine_player_state::EnginePlayerState,
-    engine_state::Turn, info_structs::PostBidInformation,
+    engine_state::Turn,
+    info_structs::PostBidInformation,
 };
 
 impl RookEngine {
@@ -33,7 +34,7 @@ impl RookEngine {
                 idx = 0
             }
         }
-        
+
         let (bid_winner, turn) = bidders.iter_mut().nth(0).unwrap();
         let turn = *turn;
         let (new_hand, nest) = bid_winner.chose_hand(kitty);
@@ -42,12 +43,12 @@ impl RookEngine {
         self.bid = current_bid;
         let trump = bid_winner.chose_trump();
         let mut i = 0;
-        let mut bid_info = PostBidInformation { 
-                bid_winner: turn, 
-                your_turn: Turn::from(0), 
-                won_bid: current_bid, 
-                trump_suit: trump, 
-            };
+        let mut bid_info = PostBidInformation {
+            bid_winner: turn,
+            your_turn: Turn::from(0),
+            won_bid: current_bid,
+            trump_suit: trump,
+        };
         for player in &mut self.players {
             bid_info.your_turn = Turn::from(i);
             i += 1;

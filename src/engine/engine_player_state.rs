@@ -1,5 +1,8 @@
 use crate::engine::{
-    RookPlayer, card::{Card, CardSuit}, engine_state::Turn, info_structs::{PostBidInformation, PostTrickInformation}
+    RookPlayer,
+    card::{Card, CardSuit},
+    engine_state::Turn,
+    info_structs::{PostBidInformation, PostTrickInformation},
 };
 
 #[derive(Debug)]
@@ -11,7 +14,11 @@ pub struct EnginePlayerState {
 }
 
 impl EnginePlayerState {
-    pub fn new(hand: [Card; 10], decision_maker: Box<dyn RookPlayer>, turn: Turn) -> EnginePlayerState {
+    pub fn new(
+        hand: [Card; 10],
+        decision_maker: Box<dyn RookPlayer>,
+        turn: Turn,
+    ) -> EnginePlayerState {
         EnginePlayerState {
             hand,
             won_cards: Vec::new(),
