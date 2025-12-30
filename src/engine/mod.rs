@@ -47,10 +47,10 @@ impl RookEngine {
         const EMPTY_HAND: [Card; 10] = [Card::Null; 10];
         let [p1, p2, p3, p4] = decision_makers;
         let players = [
-            EnginePlayerState::new(EMPTY_HAND, p1),
-            EnginePlayerState::new(EMPTY_HAND, p2),
-            EnginePlayerState::new(EMPTY_HAND, p3),
-            EnginePlayerState::new(EMPTY_HAND, p4),
+            EnginePlayerState::new(EMPTY_HAND, p1, Turn::One),
+            EnginePlayerState::new(EMPTY_HAND, p2, Turn::Two),
+            EnginePlayerState::new(EMPTY_HAND, p3, Turn::Three),
+            EnginePlayerState::new(EMPTY_HAND, p4, Turn::Four),
         ];
 
         let empty_nest = [Card::Null; 5];
