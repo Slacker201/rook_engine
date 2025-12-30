@@ -9,6 +9,7 @@ use crate::engine::{
 };
 // public api
 pub mod card;
+pub mod info_structs;
 
 // internal state
 mod engine_player_state;
