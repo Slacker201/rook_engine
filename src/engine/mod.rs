@@ -71,6 +71,7 @@ impl RookEngine {
         while self.state != EngineState::Won {
             self.advance_game();
         }
+        self.advance_game();
     }
 
     pub fn advance_game(&mut self) {
