@@ -1,6 +1,6 @@
 use crate::engine::{
     RookPlayer,
-    card::{Card, CardSuit},
+    card::{Card, CardSuit}, info_structs::PostBidInformation,
 };
 
 #[derive(Debug)]
@@ -37,12 +37,15 @@ impl EnginePlayerState {
             false
         }
     }
+
     pub fn bid(&mut self, current_bid: u32) -> Option<u32> {
         self.decision_maker.bid(current_bid, self.hand)
     }
+
     pub fn chose_trump(&mut self) -> CardSuit {
         self.decision_maker.chose_trump(self.hand)
     }
+
     pub fn play_turn(&mut self, trump: CardSuit, pot: [Card; 4]) -> usize {
         let mut selected_card = self.decision_maker.play_turn(trump, pot, self.hand);
         let mut idx = 0;
@@ -56,27 +59,37 @@ impl EnginePlayerState {
         // TODO add turn verification
         selected_card
     }
+
     pub fn get_and_remove(&mut self, card_idx: usize) -> Card {
         let card = self.hand[card_idx];
         self.hand[card_idx] = Card::Null;
         card
     }
+
     pub fn add_won_cards(&mut self, pot: [Card; 4]) {
         self.won_cards.extend_from_slice(&pot);
     }
+
     pub fn has_no_cards(&self) -> bool {
         self.hand.iter().all(|card| card == &Card::Null)
     }
+
     pub fn chose_hand(&mut self, kitty: [Card; 5]) -> ([Card; 10], [Card; 5]) {
         let mut expanded_hand = self.hand.to_vec();
         expanded_hand.extend_from_slice(&kitty);
         self.decision_maker
             .chose_hand(expanded_hand.try_into().unwrap())
     }
+
     pub fn add_nest(&mut self, nest: [Card; 5]) {
         self.won_cards.extend_from_slice(&nest);
     }
+
     pub fn score(&self) -> u32 {
         self.won_cards.iter().map(|card| card.points()).sum()
+    }
+
+    pub fn post_bid_info(&mut self, bid_info: &PostBidInformation) {
+        self.decision_maker.post_bid_information(bid_info);
     }
 }
