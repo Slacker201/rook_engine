@@ -1,6 +1,6 @@
 use crate::engine::{
     RookPlayer,
-    card::{Card, CardSuit}, info_structs::PostBidInformation,
+    card::{Card, CardSuit}, info_structs::{PostBidInformation, PostTrickInformation},
 };
 
 #[derive(Debug)]
@@ -91,5 +91,9 @@ impl EnginePlayerState {
 
     pub fn post_bid_info(&mut self, bid_info: &PostBidInformation) {
         self.decision_maker.post_bid_information(bid_info);
+    }
+
+    pub fn post_trick_info(&mut self, trick_info: &PostTrickInformation) {
+        self.decision_maker.post_trick_information(trick_info);
     }
 }
