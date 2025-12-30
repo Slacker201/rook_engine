@@ -2,7 +2,7 @@ use crate::engine::{
     RookEngine,
     card::{Card, CardSuit},
     engine_player_state::EnginePlayerState,
-    engine_state::{EngineState, Turn},
+    engine_state::{EngineState, Turn}, info_structs::PostTrickInformation,
 };
 
 impl RookEngine {
@@ -19,6 +19,7 @@ impl RookEngine {
         }
         let winner_index = Self::get_index_of_winner(trump, pot);
         let winner = players.into_iter().nth(winner_index).unwrap();
+        let winners_turn = winner.turn();
 
         winner.add_won_cards(pot);
 
@@ -27,6 +28,18 @@ impl RookEngine {
             self.state = EngineState::Won;
         } else {
             self.state = EngineState::Ingame(trump, Turn::from(winner_index));
+        }
+        let mut i = 0;
+        let mut trick_info = PostTrickInformation {
+            trick_winner: winners_turn,
+            your_turn: Turn::from(0),
+            trick_cards: pot,
+        };
+
+        for player in &mut self.players {
+            trick_info.your_turn = Turn::from(i);
+            i += 1;
+            player.post_trick_info(&trick_info);
         }
     }
 
