@@ -38,8 +38,8 @@ pub trait RookPlayer: Debug {
     fn should_reshuffle(&mut self, hand: [Card; 10]) -> bool;
     fn chose_trump(&mut self, hand: [Card; 10]) -> CardSuit;
     fn chose_hand(&mut self, hand: [Card; 15]) -> ([Card; 10], [Card; 5]);
-    fn post_bid_information(&mut self, bid_info: PostBidInformation);
-    fn post_trick_information(&mut self, trick_info: PostTrickInformation);
+    fn post_bid_information(&mut self, bid_info: &PostBidInformation);
+    fn post_trick_information(&mut self, trick_info: &PostTrickInformation);
 }
 
 impl RookEngine {
