@@ -1,6 +1,5 @@
 use crate::engine::{
-    RookPlayer,
-    card::{Card, CardSuit}, info_structs::{PostBidInformation, PostTrickInformation},
+    RookPlayer, card::{Card, CardSuit}, engine_state::Turn, info_structs::{PostBidInformation, PostTrickInformation}
 };
 
 #[derive(Debug)]
@@ -8,14 +7,16 @@ pub struct EnginePlayerState {
     hand: [Card; 10],
     won_cards: Vec<Card>,
     decision_maker: Box<dyn RookPlayer>,
+    turn: Turn,
 }
 
 impl EnginePlayerState {
-    pub fn new(hand: [Card; 10], decision_maker: Box<dyn RookPlayer>) -> EnginePlayerState {
+    pub fn new(hand: [Card; 10], decision_maker: Box<dyn RookPlayer>, turn: Turn) -> EnginePlayerState {
         EnginePlayerState {
             hand,
             won_cards: Vec::new(),
             decision_maker,
+            turn,
         }
     }
 
@@ -95,5 +96,9 @@ impl EnginePlayerState {
 
     pub fn post_trick_info(&mut self, trick_info: &PostTrickInformation) {
         self.decision_maker.post_trick_information(trick_info);
+    }
+
+    pub fn turn(&self) -> Turn {
+        self.turn
     }
 }
