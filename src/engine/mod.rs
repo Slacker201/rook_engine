@@ -5,7 +5,8 @@ use rand::rngs::ThreadRng;
 use crate::engine::{
     card::{Card, CardSuit},
     engine_player_state::EnginePlayerState,
-    engine_state::{EngineState, Turn}, info_structs::PostBidInformation,
+    engine_state::{EngineState, Turn},
+    info_structs::PostBidInformation,
 };
 // public api
 pub mod card;
@@ -17,10 +18,9 @@ mod engine_state;
 
 // game stages
 mod bid;
+mod game_won;
 mod ingame;
 mod pregame;
-mod game_won;
-
 
 #[derive(Debug)]
 pub struct RookEngine {
