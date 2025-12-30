@@ -89,7 +89,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "rook_nn"
+name = "rook_engine"
 version = "0.1.0"
 dependencies = [
  "rand",
