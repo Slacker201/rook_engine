@@ -1,3 +1,7 @@
+
+pub mod deck;
+
+
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Default)]
 pub enum Card {
     #[default]
