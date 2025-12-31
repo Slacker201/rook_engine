@@ -9,11 +9,26 @@ pub struct Deck {
 }
 
 impl Deck {
-    pub fn new() {
+    pub fn new() -> Self {
         let cards = Card::new_deck();
+        Self { cards }
     }
-    pub fn shuffle(&mut self, rng: &mut ThreadRng) {
+    fn shuffle(&mut self, rng: &mut ThreadRng) {
         self.cards.shuffle(rng);
+    }
+    pub fn get_player_cards(mut self) -> ([[Card; 10]; 4], [Card; 5]) {
+        let mut rng = rand::rng();
+        self.shuffle(&mut rng);
+        let players = [
+            self.cards[0..10].try_into().unwrap(),
+            self.cards[10..20].try_into().unwrap(),
+            self.cards[20..30].try_into().unwrap(),
+            self.cards[30..40].try_into().unwrap(),
+        ];
+        let nest = self.cards[40..45]
+            .try_into()
+            .expect("Somehow the atoms of the universe conspired against you!");
+        (players, nest)
     }
 }
 
