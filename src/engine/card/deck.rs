@@ -8,7 +8,7 @@ pub struct Deck {
     cards: [Card; 45]
 }
 
-trait CardScoring {
+pub trait CardScoring {
     fn points(&self) -> u32;
 }
 

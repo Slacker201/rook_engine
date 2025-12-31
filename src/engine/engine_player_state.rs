@@ -108,4 +108,8 @@ impl EnginePlayerState {
     pub fn turn(&self) -> Turn {
         self.turn
     }
+
+    pub fn should_reshuffle(&mut self) -> bool {
+        self.decision_maker.should_reshuffle(self.hand)
+    }
 }
