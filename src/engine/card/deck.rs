@@ -1,3 +1,5 @@
+use rand::{rngs::ThreadRng, seq::SliceRandom};
+
 use crate::engine::card::{Card, CardNumber};
 
 
@@ -9,6 +11,9 @@ pub struct Deck {
 impl Deck {
     pub fn new() {
         let cards = Card::new_deck();
+    }
+    pub fn shuffle(&mut self, rng: &mut ThreadRng) {
+        self.cards.shuffle(rng);
     }
 }
 
