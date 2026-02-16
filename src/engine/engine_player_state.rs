@@ -39,6 +39,15 @@ impl EnginePlayerState {
         self.decision_maker.chose_trump(self.hand)
     }
 
+    fn select_card_of_suit(&self, suit: CardSuit, trump: CardSuit) -> Option<usize> {
+        for idx in 0..11 {
+            if self.hand[idx] != Card::Null && self.hand[idx].suit(trump) == suit {
+                return Some(idx)
+            }
+        }
+        None
+    }
+
     pub fn play_turn(&mut self, trump: CardSuit, pot: [Card; 4]) -> usize {
         let mut selected_card = self.decision_maker.play_turn(trump, pot, self.hand);
         let mut idx = 0;
@@ -49,8 +58,10 @@ impl EnginePlayerState {
                 panic!("goofy ahh computer")
             }
         }
-        // TODO add turn verification
-        selected_card
+        if pot[0] == Card::Null || pot[0].suit(trump) == self.hand[selected_card].suit(trump) {
+            return selected_card;
+        }
+        self.select_card_of_suit(pot[0].suit(trump), trump).unwrap_or(selected_card)
     }
 
     pub fn get_and_remove(&mut self, card_idx: usize) -> Card {
