@@ -50,12 +50,10 @@ impl EnginePlayerState {
 
     pub fn play_turn(&mut self, trump: CardSuit, pot: [Card; 4]) -> usize {
         let mut selected_card = self.decision_maker.play_turn(trump, pot, self.hand);
-        let mut idx = 0;
-        while self.hand[selected_card] == Card::Null {
+        for idx in 0..11 {
             selected_card = idx;
-            idx += 1;
-            if idx == 11 {
-                panic!("goofy ahh computer")
+            if self.hand[idx] != Card::Null {
+                break;
             }
         }
         if pot[0] == Card::Null || pot[0].suit(trump) == self.hand[selected_card].suit(trump) {
