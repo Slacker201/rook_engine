@@ -50,13 +50,15 @@ impl EnginePlayerState {
 
     pub fn play_turn(&mut self, trump: CardSuit, pot: [Card; 4]) -> usize {
         let mut selected_card = self.decision_maker.play_turn(trump, pot, self.hand);
-        for idx in 0..11 {
-            selected_card = idx;
-            if self.hand[idx] != Card::Null {
-                break;
+        if self.hand[selected_card].is_null() {
+            for idx in 0..11 {
+                if !self.hand[idx].is_null() {
+                    selected_card = idx;
+                    break;
+                }
             }
         }
-        if pot[0] == Card::Null || pot[0].suit(trump) == self.hand[selected_card].suit(trump) {
+        if pot[0].is_null() || pot[0].suit(trump) == self.hand[selected_card].suit(trump) {
             return selected_card;
         }
         self.select_card_of_suit(pot[0].suit(trump), trump).unwrap_or(selected_card)

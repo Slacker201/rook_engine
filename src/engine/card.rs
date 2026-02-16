@@ -74,6 +74,11 @@ impl Card {
             Card::Rook => 1,
         }
     }
+
+    #[inline]
+    pub fn is_null(&self) -> bool {
+        *self == Self::Null
+    }
 }
 
 impl CardNumber {
