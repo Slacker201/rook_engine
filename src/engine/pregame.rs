@@ -16,6 +16,9 @@ impl RookEngine {
                 if hand.points() == 15 {
                     should_reshuffle = self.players[i].should_reshuffle() || should_reshuffle;
                 }
+                if hand.points() < 15 {
+                    should_reshuffle = true;
+                }
                 i += 1;
             }
             self.state = EngineState::Bid(cards.1)
