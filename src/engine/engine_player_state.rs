@@ -31,21 +31,6 @@ impl EnginePlayerState {
         self.hand = new_hand;
     }
 
-    pub fn player_has_sufficient_points(&mut self) -> bool {
-        let mut points_total = 0;
-        for card in self.hand {
-            points_total += card.points();
-        }
-        println!("points_total: {}", points_total);
-        if points_total > 15 {
-            true
-        } else if points_total == 15 {
-            self.decision_maker.should_reshuffle(self.hand)
-        } else {
-            false
-        }
-    }
-
     pub fn bid(&mut self, current_bid: u32) -> Option<u32> {
         self.decision_maker.bid(current_bid, self.hand)
     }

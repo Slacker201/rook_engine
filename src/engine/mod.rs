@@ -1,7 +1,5 @@
 use std::fmt::Debug;
 
-use rand::rngs::ThreadRng;
-
 use crate::engine::{
     card::{Card, CardSuit},
     engine_player_state::EnginePlayerState,
@@ -25,7 +23,6 @@ mod pregame;
 #[derive(Debug)]
 pub struct RookEngine {
     state: EngineState,
-    rng: ThreadRng,
     players: [EnginePlayerState; 4],
     nest: [Card; 5],
     bid: u32,
@@ -54,12 +51,10 @@ impl RookEngine {
         ];
 
         let empty_nest = [Card::Null; 5];
-        let rng = rand::rng();
         let state = EngineState::Pregame;
 
         Self {
             state,
-            rng,
             players,
             nest: empty_nest,
             bid: 0,
